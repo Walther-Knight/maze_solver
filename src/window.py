@@ -5,6 +5,7 @@ class Window:
         self.width = width
         self.height = height
         #create tkinter root object and set title
+        print(f"Generating Window of size {width} X {height}!")
         self.root = Tk()
         self.root.title("Amazing Maze Solver")
         #set up canvas and pack
@@ -21,8 +22,10 @@ class Window:
 
     def wait_for_close(self):
         self.run_state = True
+        print("Running Maze!")
         while self.run_state:
             self.redraw()
     
     def close(self):
+        print("Exiting...")
         self.run_state = False
