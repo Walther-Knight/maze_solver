@@ -119,6 +119,9 @@ class Cell:
             if getattr(self, f"has_{wall}_wall"):  # Check if wall exists
                 wall_line = Line(self.boundaries[points[0]], self.boundaries[points[1]])
                 wall_line.draw(self._win, self.fill_color)
+            else:
+                wall_line = Line(self.boundaries[points[0]], self.boundaries[points[1]])
+                wall_line.draw(self._win, "white")
 
     def draw_move(self, to_cell, undo=False):
         if self._win is None:

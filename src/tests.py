@@ -38,15 +38,20 @@ class Tests(unittest.TestCase):
         num_cols = 3
         num_rows = 3
         m = Maze(0, 0, num_rows, num_cols, 10, 10)
-    
-        # Check that all cells have all walls by default
-        for col in m._cells:
-            for cell in col:
+
+        # Check that all cells (except entrance and exit) have all walls by default
+        for row_idx, row in enumerate(m._cells):
+            for col_idx, cell in enumerate(row):
+                # Skip entrance and exit cells
+                if (row_idx == 0 and col_idx == 0) or (row_idx == num_rows-1 and col_idx == num_cols-1):
+                    continue
+                
                 self.assertTrue(cell.has_left_wall)
                 self.assertTrue(cell.has_right_wall)
                 self.assertTrue(cell.has_top_wall)
                 self.assertTrue(cell.has_bottom_wall)
 
+            
     def test_cell_positions(self):
         # Test that cells are positioned correctly using simpler values
         x1 = 0
@@ -136,13 +141,10 @@ class Tests(unittest.TestCase):
         num_cols = 5
         m = Maze(0, 0, num_rows, num_cols, 10, 10)
     
-        # Check that _break_entrance_and_exit creates openings
-        m._break_entrance_and_exit()
-    
-        # Entry point should have no top wall
+        # Entry point should have no top wall (already broken in __init__)
         self.assertFalse(m._cells[0][0].has_top_wall)
     
-        # Exit point should have no bottom wall
+        # Exit point should have no bottom wall (already broken in __init__)
         self.assertFalse(m._cells[num_cols-1][num_rows-1].has_bottom_wall)
 
     def test_break_walls_between(self):
