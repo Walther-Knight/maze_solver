@@ -83,7 +83,7 @@ class Line:
     #class to define 4 sided "cells" for maze rendering
     #point1 represents top left corner, point2 represents bottom right
 class Cell:
-    def __init__(self, point1, point2, canvas, fill_color="black"):
+    def __init__(self, point1, point2, canvas=None, fill_color="black"):
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
@@ -105,6 +105,8 @@ class Cell:
         self.fill_color = fill_color
 
     def draw(self):
+        if self._win is None:
+            return
         # Map walls to their boundary points
         wall_pairs = {
             "left": ("top_left", "bottom_left"),
@@ -119,6 +121,8 @@ class Cell:
                 wall_line.draw(self._win, self.fill_color)
 
     def draw_move(self, to_cell, undo=False):
+        if self._win is None:
+            return
         if undo:
             line_color = "gray"
         else:
