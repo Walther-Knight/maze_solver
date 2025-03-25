@@ -128,4 +128,4 @@ class Cell:
         center_line.draw(self._win, line_color)
 
     def __str__(self):
-        return f"Cell parameters: topL {self.boundaries['top_left']} botL {self.boundaries['bottom_left']} topR {self.boundaries['top_right']} botR {self.boundaries['bottom_right']} center {self.center}"
+        return f"Cell parameters: topL {self.boundaries['top_left']} botL {self.boundaries['bottom_left']} topR {self.boundaries['top_right']} botR {self.boundaries['bottom_right']} center {self.center} canvas {self._win}"
