@@ -22,6 +22,7 @@ class Maze:
         self._break_walls_r(0,0)
         self._ensure_outer_walls()
         self._break_entrance_and_exit()
+        self._reset_cells_visited()
         
     def _create_cells(self):
         for i in range(self.num_cols):
@@ -43,6 +44,11 @@ class Maze:
         if self._win is not None:
             self._win.redraw()
             sleep(0.05)
+
+    def _reset_cells_visited(self):
+        for column in self._cells:
+            for cell in column:
+                cell.visited = False
 
     def _break_entrance_and_exit(self):
         start_cell = self._cells[0][0]

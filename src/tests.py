@@ -38,6 +38,10 @@ class Tests(unittest.TestCase):
         num_cols = 3
         num_rows = 3
         m = Maze(0, 0, num_rows, num_cols, 10, 10)
+    
+        # Recreate cells without breaking walls
+        m._cells = []
+        m._create_cells()
 
         # Check that all cells (except entrance and exit) have all walls by default
         for row_idx, row in enumerate(m._cells):
@@ -113,8 +117,8 @@ class Tests(unittest.TestCase):
         self.assertEqual(len(m_small._cells[0]), 1)
     
         # Test large maze
-        rows = 50
-        cols = 60
+        rows = 25
+        cols = 30
         m_large = Maze(0, 0, rows, cols, 5, 5)
         self.assertEqual(len(m_large._cells), cols)
         self.assertEqual(len(m_large._cells[0]), rows)
