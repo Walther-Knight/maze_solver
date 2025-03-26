@@ -25,7 +25,7 @@ class Window:
 
     def wait_for_close(self):
         self.run_state = True
-        print("Running Maze!")
+        print("Maze complete, waiting for exit!")
         while self.run_state:
             self.redraw()
     

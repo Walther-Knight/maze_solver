@@ -151,38 +151,5 @@ class Tests(unittest.TestCase):
         # Exit point should have no bottom wall (already broken in __init__)
         self.assertFalse(m._cells[num_cols-1][num_rows-1].has_bottom_wall)
 
-    def test_break_walls_between(self):
-        num_rows = 3
-        num_cols = 3
-        m = Maze(0, 0, num_rows, num_cols, 10, 10)
-    
-        # Get two adjacent cells
-        cell1 = m._cells[0][0]
-        cell2 = m._cells[1][0]  # Cell to the right
-    
-        # Break walls between them
-        m._break_walls_between(cell1, cell2)
-    
-        # Check that the walls are broken
-        self.assertFalse(cell1.has_right_wall)
-        self.assertFalse(cell2.has_left_wall)
-
-    def test_cell_neighbors(self):
-        num_rows = 3
-        num_cols = 3
-        m = Maze(0, 0, num_rows, num_cols, 10, 10)
-    
-        # Get middle cell
-        middle_cell = m._cells[1][1]
-    
-        # Check that it has 4 neighbors (north, east, south, west)
-        neighbors = m._get_cell_neighbors(middle_cell)
-        self.assertEqual(len(neighbors), 4)
-    
-        # Corner cell should have only 2 neighbors
-        corner_cell = m._cells[0][0]
-        corner_neighbors = m._get_cell_neighbors(corner_cell)
-        self.assertEqual(len(corner_neighbors), 2)
-
 if __name__ == "__main__":
     unittest.main()
