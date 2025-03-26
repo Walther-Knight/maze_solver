@@ -84,23 +84,34 @@ class Line:
     #point1 represents top left corner, point2 represents bottom right
 class Cell:
     def __init__(self, point1, point2, canvas=None, fill_color="black"):
+        #default cell configuration, 4 walls
         self.has_left_wall = True
         self.has_right_wall = True
         self.has_top_wall = True
         self.has_bottom_wall = True
+
+        #data member to flag is cell has been visited
+        self.visited = False
+
+        #top_left and bottom_right coordinates
         _x1 = point1.x
         _y1 = point1.y
         _x2 = point2.x
         _y2 = point2.y
+
+        #calculate boundaries
         self.boundaries = {"top_left": point1,
                            "bottom_right": point2,
                            "bottom_left": Point(_x1, _y2),
                            "top_right": Point(_x2, _y1)
                            }
+        
         #derive center point
         center_x = _x1 + (_x2 - _x1) / 2
         center_y = _y1 + (_y2 - _y1) / 2
         self.center = Point(center_x, center_y)
+
+        #set canvas and fill
         self._win = canvas
         self.fill_color = fill_color
 
